@@ -19,7 +19,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         super(MainWindow, self).__init__()
         self.setWindowTitle("Function Plotter")
-        self.setWindowIcon(QtGui.QIcon("Resourses/logo.png"))
+        self.setWindowIcon(QtGui.QIcon("Resources/logo.png"))
         self.main_widget = QtWidgets.QWidget(self)
         self.Stylize()
 
@@ -100,7 +100,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.msg= QMessageBox()
         self.msg.setWindowTitle("INVALID INPUT")
         self.msg.setText("Please enter a valid equation")
-        self.msg.setWindowIcon(QtGui.QIcon("Resourses/logo.png"))
+        self.msg.setWindowIcon(QtGui.QIcon("Resources/logo.png"))
         self.msg.setIcon(QMessageBox.Warning)
         x = self.msg.exec_()
 
