@@ -22,9 +22,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setWindowIcon(QtGui.QIcon("Resources/logo.png"))
         self.main_widget = QtWidgets.QWidget(self)
         self.Stylize()
-
-        self.InitFig()
+        
         self.InitLineEdit()
+        self.InitFig()
         self.InitButton()
         self.InitLayouts()
 
@@ -39,20 +39,36 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.layout = QtWidgets.QGridLayout(self.main_widget)
         self.layout.addWidget(self.EquationText,0,0)
-        self.layout.addWidget(self.PlotButton,0,1)
+        self.layout.addWidget(self.x1,0,1)
+        self.layout.addWidget(self.x2,0,2)
+        self.layout.addWidget(self.PlotButton,0,3)
         self.EquationText.setMinimumHeight(40)
         self.PlotButton.setMinimumHeight(35)
-       
-        self.layout.addWidget(self.canvas,2,0,2,2)
+        self.x1.setMinimumHeight(30)
+        self.x2.setMinimumHeight(30)
+
+        self.layout.addWidget(self.canvas,2,0,2,4)
         self.layout.setHorizontalSpacing(20)
-        self.layout.setMargin(15)
+        self.layout.setMargin(20)
+        
+
+
+     
 
     def InitLineEdit(self):
         self.EquationText= QLineEdit(self)
-        self.EquationText.setStyleSheet("background-color: white;") 
+        self.EquationText.setStyleSheet("background-color: white;")
+        self.x1= QLineEdit(self)
+        self.x2= QLineEdit(self)
+        self.x1.setStyleSheet("background-color: white;")
+        self.x2.setStyleSheet("background-color: white;")
+
         font = self.EquationText.font()      # lineedit current font
         font.setPointSize(15)               # change it's size
         self.EquationText.setFont(font)
+        self.EquationText.setPlaceholderText("f(x) = ")
+        self.x1.setPlaceholderText("xMin= ")
+        self.x2.setPlaceholderText("xMax= ")
         self.equation = str(self.EquationText.text())
 
 
@@ -110,49 +126,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.equation = str(self.EquationText.text())
         inp = self.equation
         print(inp)
-        x = np.linspace(-2, 2, 100) 
+        x1= int(self.x1.text())
+        x2= int(self.x2.text())
+        x = np.linspace(x1, x2) 
         expr = inp.replace("^","**")
         self.axes.set_title("$"+inp+"$")
-
-
         y= eval(expr)
-        self.axes.plot(y)
+        self.axes.plot(x,y)
         self.fig.canvas.draw()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    #     grid = QGridLayout()
-    #     sc = MplCanvas(self, width=5, height=4, dpi=100)
-    #     sc.axes.plot([0,1,2,3,4], [10,1,20,3,40])
-    #     self.setWindowTitle("Function Plotter")
-    #     self.setWindowIcon(QtGui.QIcon("Resourses/logo.png"))
-        
-       
-
-
-    # def inputValidation(self):
-    #     self.msg= QMessageBox()
-    #     self.msg.setWindowTitle("invalid input")
-    #     self.msg.setText("please enter valid equation")
-    #     self.msg.setWindowIcon(QtGui.QIcon("Resourses/logo.png"))
-    #     self.msg.setIcon(QMessageBox.Warning)
-    #     x = self.msg.exec_()
-    # # def printEq(self):
-    # #     self.EquationText
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
