@@ -21,7 +21,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setWindowTitle("Function Plotter")
         self.setWindowIcon(QtGui.QIcon("Resources/logo.png"))
         self.main_widget = QtWidgets.QWidget(self)
+        self.resize(900,600)
         self.Stylize()
+
         
         self.InitLineEdit()
         self.InitFig()
@@ -46,6 +48,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.PlotButton.setMinimumHeight(35)
         self.x1.setMinimumHeight(30)
         self.x2.setMinimumHeight(30)
+        self.x1.setMaximumWidth(130)
+        self.x2.setMaximumWidth(150)    
 
         self.layout.addWidget(self.canvas,2,0,2,4)
         self.layout.setHorizontalSpacing(20)
@@ -57,6 +61,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def InitLineEdit(self):
         self.EquationText= QLineEdit(self)
+        self.EquationText.setToolTip("supported operators:+ - / * ^ \n e.g. 5*x^3 + 2*x")
+
+        self.EquationText.setContentsMargins(10,0,0,0)
         self.EquationText.setStyleSheet("background-color: white;")
         self.x1= QLineEdit(self)
         self.x2= QLineEdit(self)
@@ -82,7 +89,11 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def InitButton(self):
         self.PlotButton = QPushButton("Plot",self)
+        self.PlotButton.setShortcut("Ctrl+P")
+        self.PlotButton.setToolTip("CTRL+P")
+
         self.PlotButton.clicked.connect(self.plotFunc)
+
         # self.PlotButton.clicked.connect(self.inputValidation)
 
         self.PlotButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -123,7 +134,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def plotFunc(self):
         self.axes.clear()
-        self.equation = str(self.EquationText.text())
+        self.equation = str(self.EquationText.text()).lower()
         inp = self.equation
         print(inp)
         x1= int(self.x1.text())
