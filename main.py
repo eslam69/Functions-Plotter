@@ -20,6 +20,8 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__()
         self.setWindowTitle("Function Plotter")
         self.setWindowIcon(QtGui.QIcon("Resources/logo.png"))
+        self.msg= QMessageBox()
+        self.setIconSize(QtCore.QSize(500, 500))
         self.main_widget = QtWidgets.QWidget(self)
         self.resize(900,600)
         self.Stylize()
@@ -73,9 +75,9 @@ class MainWindow(QtWidgets.QMainWindow):
         font = self.EquationText.font()      # lineedit current font
         font.setPointSize(15)               # change it's size
         self.EquationText.setFont(font)
-        self.EquationText.setPlaceholderText("f(x) = ")
-        self.x1.setPlaceholderText("xMin= ")
-        self.x2.setPlaceholderText("xMax= ")
+        self.EquationText.setPlaceholderText("  f(x) = ")
+        self.x1.setPlaceholderText(" xMin= ")
+        self.x2.setPlaceholderText(" xMax= ")
         self.equation = str(self.EquationText.text())
 
 
@@ -124,27 +126,39 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def inputValidation(self):
 
-        self.msg= QMessageBox()
+        
         self.msg.setWindowTitle("INVALID INPUT")
-        self.msg.setText("Please enter a valid equation")
         self.msg.setWindowIcon(QtGui.QIcon("Resources/logo.png"))
         self.msg.setIcon(QMessageBox.Warning)
         x = self.msg.exec_()
 
 
     def plotFunc(self):
-        self.axes.clear()
-        self.equation = str(self.EquationText.text()).lower()
-        inp = self.equation
-        print(inp)
-        x1= int(self.x1.text())
-        x2= int(self.x2.text())
-        x = np.linspace(x1, x2) 
-        expr = inp.replace("^","**")
-        self.axes.set_title("$"+inp+"$")
-        y= eval(expr)
-        self.axes.plot(x,y)
-        self.fig.canvas.draw()
+        try:
+            self.axes.clear()
+            self.equation = str(self.EquationText.text()).lower()
+            inp = self.equation
+            title = inp.replace("*","")
+            print(inp)
+            x1= int(self.x1.text())
+            x2= int(self.x2.text())
+            x = np.linspace(x1, x2) 
+            expr = inp.replace("^","**")
+            self.axes.set_title("$"+title+"$")
+            y= eval(expr)
+            self.axes.plot(x,y)
+            self.fig.canvas.draw()
+        except :
+            if not (self.x1.text().isdecimal() ) :
+                self.msg.setText("Please enter integer valued X Minimum ")
+            elif not ( self.x2.text().isdecimal() ) :
+                self.msg.setText("Please enter integer valued X Maximum")
+            else:
+                self.msg.setText("Please enter a valid univariate polynomial equation\n example: 5*x^3 + 2*x ")
+
+            
+            self.inputValidation()
+
 
 
 
