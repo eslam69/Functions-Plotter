@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 import numpy as np
 import sys
+import  os
 
 
 
@@ -158,6 +159,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
 if __name__ == '__main__':
+    
+    # To load the source Code absolute directory
+    os.chdir(os.path.dirname(os.path.abspath(__file__))) 
     app = QtWidgets.QApplication(sys.argv)
     w = MainWindow()
     w.setStyleSheet("background-color: gray;") 
