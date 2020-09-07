@@ -17,10 +17,12 @@ To install all the required dependencies, please run:
 
 ## Features:
 * Tooltips for guidance
-<img src="Resources/tooltip.png" width=1000 >
+<img src="Resources/tooltip.png"  >
+
+
 * Keyboard Shortcuts
 
-<img src="Resources/shortcut.png"  width=100 >
+<img src="Resources/shortcut.png"  width=100 class="center">
 
 * **ggplot** style theme
 
