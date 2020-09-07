@@ -16,19 +16,19 @@ To install all the required dependencies, please run:
 <img src="Resources/g1.gif" width=1000>
 
 ## Features:
-* Tooltips for guidance
+* Tooltips for guidance:
 <img src="Resources/tooltip.png"  >
 
 
-* Keyboard Shortcuts
+* Keyboard Shortcuts:
 
 <img src="Resources/shortcut.png"  width=100 class="center">
 
-* **ggplot** style theme
+* **ggplot** style theme.
 
-* Inline LaTeX rendered equation on the plot title
+* Inline LaTeX rendered equation on the plot title:
 <img src="Resources/tex.png" >
 
-* Supports Upper and lower case ( X )
+* Supports Upper and lower case ( X ):
 <img src="Resources/cases.png" >
 
