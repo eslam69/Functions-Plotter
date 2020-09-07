@@ -24,18 +24,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setIconSize(QtCore.QSize(500, 500))
         self.main_widget = QtWidgets.QWidget(self)
         self.resize(900,600)
-        self.Stylize()
 
-        
+        self.Stylize()
         self.InitLineEdit()
         self.InitFig()
         self.InitButton()
         self.InitLayouts()
 
-       
         self.axes.set_title("Function Plotter")
 
-        
         self.setCentralWidget(self.main_widget)
         self.show()
 
@@ -85,6 +82,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.fig = Figure()
         self.axes = self.fig.add_subplot(111)
         self.canvas = FigureCanvas(self.fig)
+        self.canvas.setStyleSheet("background-color: black;  border: 15px solid black; border-radius: 1px")
         self.canvas.setSizePolicy(QtWidgets.QSizePolicy.Expanding, 
                                   QtWidgets.QSizePolicy.Expanding)
         self.canvas.updateGeometry()
@@ -95,9 +93,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.PlotButton.setToolTip("CTRL+P")
 
         self.PlotButton.clicked.connect(self.plotFunc)
-
-        # self.PlotButton.clicked.connect(self.inputValidation)
-
         self.PlotButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
     def Stylize(self):
