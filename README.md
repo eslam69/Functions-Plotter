@@ -17,12 +17,16 @@ To install all the required dependencies, please run:
 
 ## Features:
 * Tooltips for guidance
-
+<img src="Resources/tooltip.png" width=1000 >
 * Keyboard Shortcuts
 
-* ggplot style theme
+<img src="Resources/shortcut.png"  width=100 >
+
+* **ggplot** style theme
 
 * Inline LaTeX rendered equation on the plot title
+<img src="Resources/tex.png" >
 
 * Supports Upper and lower case ( X )
+<img src="Resources/cases.png" >
 
