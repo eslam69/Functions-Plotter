@@ -2,7 +2,7 @@
 
 ## Description
 A 2D function plotter, which is based mainly on Pyside2 and Matplotlib, this utility  is able to plot univariate polynomials successfully.
-
+(This task was made for an internship selection process)
 
 ## Installation
 To install all the required dependencies, please run:
